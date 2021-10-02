@@ -1,4 +1,7 @@
 from functools import reduce
+import pip
+import numpy
+import sys
 
 
 def my_reduce(my_dict):
@@ -38,9 +41,12 @@ def main():
         }
     }
 
-    # print(f'result: {reduce(some, my_dict.items(), [])}')
+    result = my_short_reduce(my_dict)
+    print(f'The Result is :{result}')
+    print(pip)
+    for i, p in enumerate(sys.path): 
+        print(f'{i}: {p}')
 
-    print(reduce(lambda a, b: [*a, {**b[1], 'name': b[0]}], my_dict.items(), []))
 
 
 def some(acumulator, new_value):
