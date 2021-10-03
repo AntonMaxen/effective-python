@@ -11,7 +11,17 @@ def generate_user():
 
 
 def generate_account(all_users):
-    amount = random.randint(1, 10000000)
+    min_amount = 1
+    max_amount = 10000000
+    bracket = random.randint(1, 100)
+
+    if bracket <= 50:
+        max_amount /= 100
+    elif 50 < bracket <= 90:
+        max_amount /= 10
+
+    amount = random.randint(min_amount, max_amount)
+
     currency = random.choice(['kr', 'dollar', 'pound'])
     users = [random.choice(all_users) for _ in range(random.randint(1, 3))]
 
