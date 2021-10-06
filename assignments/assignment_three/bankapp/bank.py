@@ -10,23 +10,25 @@ from .utils import class_utils as cu
 class Bank:
     """Bank class that holds users and bankaccounts"""
 
-    def __init__(self, name, load_from_file=False, filename='data.json'):
+    def __init__(self, name, load_from_file=False):
         """
         Initialize bank object depending on what args and kwargs passed.
 
         Args:
             name: name of the bank
             load_from_file: True if you want to load bank from local json.
-            filename: path to the json file to load and save data.
 
         """
         self.name = name
-        self.filename = filename
         self.accounts = []
         self.users = []
 
         if load_from_file and os.path.isfile(self.filename):
             self._load()
+
+    @property
+    def filename(self):
+        return f'{self.name}.json'
 
     def _load(self):
         """
@@ -86,6 +88,17 @@ class Bank:
         self.accounts.append(created_account)
 
         return account_id
+
+    def remove_account(self, account):
+        """
+        Removes account from self.accounts
+
+        Args:
+            account: the account to remove
+
+        """
+        if account in self.accounts:
+            self.accounts.remove(account)
 
     def get_account_by_id(self, account_id):
         """

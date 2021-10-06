@@ -10,8 +10,9 @@ def print_list(my_list):
         print(e)
 
 
+"""Example Usages"""
 def search_by_wealth(bank):
-    matched_accounts = bank.search_accounts_by_value(max_v=1000000, desc=True)
+    matched_accounts = bank.search_accounts_by_value(min_v=1337, max_v=1000000, desc=True)
     print_list(matched_accounts)
     print(f'total accounts: {len(bank.accounts)}')
     print(f'found: {len(matched_accounts)} accounts')
@@ -41,13 +42,30 @@ def generate_bank(bank, amount_users=1, amount_accounts=1):
     return users, accounts
 
 
+def add_myself(bank):
+    user_id = bank.create_user('Anton', 'Maxen')
+    user = bank.get_user_by_id(user_id)
+    account_id = bank.create_account(100000, 'kr', user)
+    account = bank.get_account_by_id(account_id)
+
+    return account
+
+
+def remove_myself(bank):
+    matches = bank.search_accounts_by_kwargs(first_name='Anton', last_name='Maxen')
+    bank.remove_account()
+
+
+"""End Example Usages"""
+
+
 def main():
     bank = Bank('Nordea', load_from_file=True)
+    #generate_bank(bank, amount_users=100, amount_accounts=40)
 
-    matches = bank.search_accounts_by_kwargs(currency='kr')
-
-    for account in matches:
-        print('a')
+    bank_transfer(bank)
+    #search_by_wealth(bank)
+    #my_account = add_myself(bank)
 
     bank.save()
 
