@@ -1,11 +1,14 @@
 import time
 import sys
+
+
 # Write a generator function that gives you the next number in the Fibonacci sequence. 
 def fib():
     x, y = 0, 1
     while True:
         yield x
         x, y = y, x + y
+
 
 # Write a function that takes in a list of strings and returns every character in those strings
 listring = lambda strings: [list(string) for string in strings]
@@ -42,3 +45,6 @@ def tired(s):
 
 # Use a lambda and the built-in function function filter to filter out all numbers greater than num.
 greater_then = lambda arr, num: filter(lambda x: x > num, arr) 
+
+
+# Author: Anton Maxen
