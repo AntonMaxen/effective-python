@@ -10,7 +10,7 @@ def print_list(my_list):
         print(e)
 
 
-"""Example Usages"""
+# Example Usages
 def search_by_wealth(bank):
     matched_accounts = bank.search_accounts_by_value(min_v=1337, max_v=1000000, desc=True)
     print_list(matched_accounts)
@@ -38,6 +38,7 @@ def generate_bank(bank, amount_users=1, amount_accounts=1):
 
     return users, accounts
 
+
 def advanced_searching(bank):
     accounts = bank.search_accounts_by_kwargs(currency='kr')
     matches = []
@@ -49,7 +50,7 @@ def advanced_searching(bank):
 
     for user in matches:
         user_accounts = bank.get_accounts_by_user_id(user.user_id)
-        total = sum([account.amount for account in user_accounts if account.currency=='kr'])
+        total = sum([account.amount for account in user_accounts if account.currency == 'kr'])
         print(f'user: {user.first_name} {user.last_name}')
         print(f'Total amount: {total} kr')
         print(f'Across: {len(user_accounts)} Accounts.')
@@ -60,13 +61,14 @@ def add_myself(bank):
     matches = bank.search_users_by_kwargs(first_name='anton', last_name='maxen')
     if matches > 0:
         return matches[0]
-    
+
     user_id = bank.create_user('Anton', 'Maxen')
     user = bank.get_user_by_id(user_id)
     account_id = bank.create_account(100000, 'kr', user)
     account = bank.get_account_by_id(account_id)
 
     return account
+
 
 def find_my_accounts(bank):
     accounts = bank.search_accounts_by_kwargs(first_name='Anton', last_name='Maxen')
@@ -87,21 +89,18 @@ def remove_myself(bank):
         bank.remove_user(user)
 
 
-"""End Example Usages"""
-
-
+# End Example Usages
 def main():
     bank = Bank('Nordea', load_from_file=True)
-    #generate_bank(bank, amount_users=100, amount_accounts=40)
+    # generate_bank(bank, amount_users=100, amount_accounts=40)
 
     bank_transfer(bank)
-    #search_by_wealth(bank)
-    #my_account = add_myself(bank)
-    #remove_myself(bank)
-    #add_myself(bank)
+    # search_by_wealth(bank)
+    # my_account = add_myself(bank)
+    # remove_myself(bank)
+    # add_myself(bank)
     advanced_searching(bank)
-    #find_my_accounts(bank)
-
+    # find_my_accounts(bank)
 
     bank.save()
 
