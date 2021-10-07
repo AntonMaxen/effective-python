@@ -2,7 +2,7 @@
     "name": "Nordea",
     "accounts": [
         {
-            "amount": 14357,
+            "amount": 16357,
             "currency": "kr",
             "account_id": "de01433d-a661-4df3-9d1b-8b8f5da3d5d6",
             "users": [
@@ -31,7 +31,7 @@
             ]
         },
         {
-            "amount": 45220,
+            "amount": 41220,
             "currency": "kr",
             "account_id": "312ee937-8d40-406d-b143-20346ea42716",
             "users": [
@@ -128,7 +128,7 @@
             ]
         },
         {
-            "amount": 54456,
+            "amount": 52456,
             "currency": "kr",
             "account_id": "577586f1-c671-4082-9d70-bd5a4eb3fec6",
             "users": [
@@ -174,7 +174,7 @@
             ]
         },
         {
-            "amount": 74053,
+            "amount": 78053,
             "currency": "kr",
             "account_id": "5f44f263-c6e7-44c5-b1b5-0eb7c1b79fcf",
             "users": [
@@ -327,7 +327,7 @@
             ]
         },
         {
-            "amount": 15170,
+            "amount": 13170,
             "currency": "kr",
             "account_id": "c6bbb0e8-810a-44a2-ae8c-bf98832cdb76",
             "users": [
@@ -349,7 +349,7 @@
             ]
         },
         {
-            "amount": 30048,
+            "amount": 36048,
             "currency": "kr",
             "account_id": "86e73f00-b25f-47e8-b561-49339bc1ce06",
             "users": [
@@ -507,7 +507,7 @@
             ]
         },
         {
-            "amount": 63008,
+            "amount": 61008,
             "currency": "kr",
             "account_id": "1a0081ee-d99a-4f1b-877c-a325af43f86b",
             "users": [
@@ -536,7 +536,7 @@
             ]
         },
         {
-            "amount": 45326,
+            "amount": 43326,
             "currency": "kr",
             "account_id": "76873f19-3137-4a3d-9513-ef4602868aa5",
             "users": [
@@ -674,10 +674,10 @@
         {
             "amount": 100000,
             "currency": "kr",
-            "account_id": "36e68d9a-5b49-4a16-bf52-1ce0248c80cd",
+            "account_id": "b483ca17-87df-46f5-b83c-63e00bd03610",
             "users": [
                 {
-                    "user_id": "50862b90-7d38-4d61-882a-b43184030c4a",
+                    "user_id": "7709f869-079a-4c3f-bd1f-80188a254e9f",
                     "first_name": "Anton",
                     "last_name": "Maxen"
                 }
@@ -1186,7 +1186,7 @@
             "last_name": "Williams"
         },
         {
-            "user_id": "50862b90-7d38-4d61-882a-b43184030c4a",
+            "user_id": "7709f869-079a-4c3f-bd1f-80188a254e9f",
             "first_name": "Anton",
             "last_name": "Maxen"
         }

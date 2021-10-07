@@ -21,16 +21,13 @@ def search_by_wealth(bank):
 def bank_transfer(bank):
     matched_accounts = bank.search_accounts_by_kwargs(currency='kr')
     matched_accounts = cu.get_smaller_then_by_attribute(matched_accounts, 'amount', 100000)
-    print(matched_accounts)
 
     sender = random.choice(matched_accounts)
     receiver = random.choice(matched_accounts)
     while receiver == sender and len(matched_accounts) > 1:
         receiver = random.choice(matched_accounts)
 
-    print(receiver.amount)
     sender.transfer(receiver, 2000)
-    print(receiver.amount)
 
 
 def generate_bank(bank, amount_users=1, amount_accounts=1):
@@ -41,8 +38,29 @@ def generate_bank(bank, amount_users=1, amount_accounts=1):
 
     return users, accounts
 
+def advanced_searching(bank):
+    accounts = bank.search_accounts_by_kwargs(currency='kr')
+    matches = []
+    for account in accounts:
+        matches.extend(account.search_user('max'))
+        matches.extend(account.search_user('an'))
+
+    matches = list(set(matches))
+
+    for user in matches:
+        user_accounts = bank.get_accounts_by_user_id(user.user_id)
+        total = sum([account.amount for account in user_accounts if account.currency=='kr'])
+        print(f'user: {user.first_name} {user.last_name}')
+        print(f'Total amount: {total} kr')
+        print(f'Across: {len(user_accounts)} Accounts.')
+        print()
+
 
 def add_myself(bank):
+    matches = bank.search_users_by_kwargs(first_name='anton', last_name='maxen')
+    if matches > 0:
+        return matches[0]
+    
     user_id = bank.create_user('Anton', 'Maxen')
     user = bank.get_user_by_id(user_id)
     account_id = bank.create_account(100000, 'kr', user)
@@ -50,10 +68,23 @@ def add_myself(bank):
 
     return account
 
+def find_my_accounts(bank):
+    accounts = bank.search_accounts_by_kwargs(first_name='Anton', last_name='Maxen')
+    print_list(accounts)
+    print(f'Total accounts: {len(bank.accounts)}')
+    print(f'Found: {len(accounts)}')
+
 
 def remove_myself(bank):
-    matches = bank.search_accounts_by_kwargs(first_name='Anton', last_name='Maxen')
-    bank.remove_account()
+    users = bank.search_users_by_kwargs(first_name='Anton', last_name='Maxen')
+
+    for user in users:
+        user_id = user.user_id
+        accounts = bank.get_accounts_by_user_id(user_id)
+        for account in accounts:
+            bank.remove_account(account)
+
+        bank.remove_user(user)
 
 
 """End Example Usages"""
@@ -66,6 +97,11 @@ def main():
     bank_transfer(bank)
     #search_by_wealth(bank)
     #my_account = add_myself(bank)
+    #remove_myself(bank)
+    #add_myself(bank)
+    advanced_searching(bank)
+    #find_my_accounts(bank)
+
 
     bank.save()
 

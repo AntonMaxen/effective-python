@@ -238,6 +238,17 @@ class Bank:
 
         return user_id
 
+    def remove_user(self, user):
+        """
+        Removes user from self.users
+
+        Args:
+            user: the user to remove
+
+        """
+        if user in self.users:
+            self.users.remove(user)
+
     def get_user_by_id(self, user_id):
         """
         returns a User object that matches user_id.
@@ -256,6 +267,24 @@ class Bank:
         )
         match = matches[0] if len(matches) > 0 else None
         return match
+
+    def search_users_by_kwargs(self, **kwargs):
+        """
+        Search all accounts and subclasses using keyword arguments
+        for users.
+        Example: first_name='anton', last_name='maxen'
+
+        Args:
+            kwargs: keywordarguments to use in search.
+        Returns:
+            list of users that matches keywordarguments.
+
+        """
+        matches = [cu.get_exact_matches_by_attribute(self.users, k, v)
+                   for k, v in kwargs.items()]
+        matches = [match for matchgroup in matches for match in matchgroup]
+
+        return list(set(matches))
 
     def generate_user_id(self):
         """
